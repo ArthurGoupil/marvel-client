@@ -23,7 +23,7 @@ const ComicsSearch = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3100/comics/search=${search}/page=${page}?limit=${limitPerPage}`
+          `https://marvel-goupil-backend.herokuapp.com/comics/search=${search}/page=${page}?limit=${limitPerPage}`
         );
         setData(response.data.results);
         setComicsSearchCount(response.data.total);

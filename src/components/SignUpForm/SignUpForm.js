@@ -37,7 +37,7 @@ const SignUp = ({ setUser }) => {
     } else {
       try {
         const response = await axios.post(
-          'http://localhost:3100/user/sign_up',
+          'https://marvel-goupil-backend.herokuapp.com/user/sign_up',
           {
             email,
             password

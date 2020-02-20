@@ -23,7 +23,7 @@ const CharacterComics = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3100/character/${id}/page=${page}?limit=${limitPerPage}`
+          `https://marvel-goupil-backend.herokuapp.com/character/${id}/page=${page}?limit=${limitPerPage}`
         );
         setData(response.data.results);
         setComicsCount(response.data.total);
@@ -32,7 +32,7 @@ const CharacterComics = () => {
       }
       try {
         const response = await axios.get(
-          `http://localhost:3100/characterdata/${id}`
+          `https://marvel-goupil-backend.herokuapp.com/characterdata/${id}`
         );
         setCharacterData(response.data.data.results[0]);
         setIsLoading(false);

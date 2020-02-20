@@ -30,10 +30,13 @@ const ModalConnect = ({ setDisplayModalConnect, setUser }) => {
     } else {
       try {
         let mounted = true;
-        const response = await axios.post('http://localhost:3100/user/log_in', {
-          email,
-          password
-        });
+        const response = await axios.post(
+          'https://marvel-goupil-backend.herokuapp.com/user/log_in',
+          {
+            email,
+            password
+          }
+        );
         Cookies.set('userToken', response.data.account.token, { expires: 30 });
         if (mounted) {
           setUser({ token: response.data.account.token });
