@@ -8,7 +8,7 @@ const CharactersCardsDisplay = ({ name, description, thumbnail, id, user }) => {
   const sendCharactersFavourite = async () => {
     try {
       const response = await axios.post(
-        '/character/favourite',
+        'https://marvel-goupil-backend.herokuapp.com/character/favourite',
         { characterId: id },
         {
           headers: {
