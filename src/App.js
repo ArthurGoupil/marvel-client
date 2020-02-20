@@ -11,6 +11,7 @@ import CharacterComics from './pages/CharacterComics';
 import CharactersSearch from './pages/CharactersSearch';
 import ComicsSearch from './pages/ComicsSearch';
 import SignUp from './pages/SignUp';
+import Home from './pages/Home';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -61,6 +62,9 @@ const App = () => {
             </Route>
             <Route path="/user/sign_up">
               <SignUp user={user} setUser={setUser} />
+            </Route>
+            <Route path="/">
+              <Home />
             </Route>
           </Switch>
         </main>

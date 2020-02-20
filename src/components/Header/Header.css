@@ -61,3 +61,6 @@
   color: white;
   cursor: pointer;
 }
+.header-selected {
+  color: var(--main-red) !important;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Logo from './Logo/Logo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,10 +19,17 @@ const Header = ({ setDisplayModalConnect, user, setUser }) => {
           <nav className="header-menu">
             <ul className="d-flex">
               <li>
-                <Link to="/characters/page=1">CHARACTERS</Link>
+                <NavLink
+                  to="/characters/page=1"
+                  activeClassName="header-selected"
+                >
+                  CHARACTERS
+                </NavLink>
               </li>
               <li>
-                <Link to="/comics/page=1">COMICS</Link>
+                <NavLink to="/comics/page=1" activeClassName="header-selected">
+                  COMICS
+                </NavLink>
               </li>
               <li className={!user ? 'cursor-disabled' : 'cursor-enabled'}>
                 <FontAwesomeIcon className="favourite-nav-icon" icon="star" />
