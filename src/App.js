@@ -6,6 +6,13 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Characters from './pages/Characters';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faChevronLeft,
+  faChevronRight
+} from '@fortawesome/free-solid-svg-icons';
+library.add(faChevronLeft, faChevronRight);
+
 const App = () => {
   return (
     <>
