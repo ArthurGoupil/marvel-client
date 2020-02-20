@@ -31,6 +31,6 @@
   margin: 0 5px;
 }
 .pagination-icons {
-  color: #ffc400;
+  color: var(--main-yellow);
   font-size: 25px;
 }

@@ -5,7 +5,6 @@ import './SearchBloc.css';
 const SearchBloc = ({ searchImageSrc, alt, placeholder, searchType }) => {
   const history = useHistory();
   const [search, setSearch] = useState('');
-  const limitPerPage = 100;
 
   const handleSearchChange = event => {
     const value = event.target.value;

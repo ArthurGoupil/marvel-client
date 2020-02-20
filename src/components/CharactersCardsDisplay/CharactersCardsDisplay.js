@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './CharactersCardsDisplay.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CharactersCardsDisplay = ({ name, description, thumbnail, id }) => {
   const cardLink = `/character/${id}/page=1`;
@@ -8,6 +9,10 @@ const CharactersCardsDisplay = ({ name, description, thumbnail, id }) => {
     <li className="character-card-wrapper d-flex">
       <Link to={cardLink} className="character-card-link d-flex">
         <div className="character-card d-flex">
+          <FontAwesomeIcon
+            className="character-card-icon-favourite"
+            icon="star"
+          />
           <img
             className="character-card-img"
             src={thumbnail.path + '/standard_xlarge.' + thumbnail.extension}

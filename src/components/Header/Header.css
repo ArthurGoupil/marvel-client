@@ -44,3 +44,20 @@
 .header-menu li:hover {
   color: var(--main-red);
 }
+.favourite-nav-icon {
+  color: var(--main-yellow);
+}
+.user-nav-icon {
+  color: var(--main-red);
+}
+.header-button-log {
+  border: none;
+  background-color: inherit;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.9rem;
+  font-weight: bold;
+  letter-spacing: 4px;
+  color: white;
+  cursor: pointer;
+}
