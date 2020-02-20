@@ -22,6 +22,7 @@
   color: white;
   position: sticky;
   top: 0px;
+  z-index: 1;
 }
 .header-container-top {
   width: var(--container);

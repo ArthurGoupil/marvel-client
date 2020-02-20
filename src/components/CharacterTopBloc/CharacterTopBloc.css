@@ -1,0 +1,29 @@
+/* CHARACTER TOP BLOC STYLING */
+.character-top-bloc-container {
+  width: 100%;
+  position: sticky;
+  top: 80px;
+  margin-top: -37px;
+  z-index: 2;
+}
+.character-top-bloc-background {
+  width: 550px;
+  height: 100px;
+  background-color: var(--background-dark-scnd);
+  border-radius: 7px;
+}
+.character-top-bloc {
+  position: relative;
+}
+.character-top-bloc-img {
+  width: 520px;
+  height: 70px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 7px;
+}
+.character-top-bloc-title {
+  position: absolute;
+  font-size: 40px;
+  text-shadow: var(--main-red) 4px 4px 5px;
+}

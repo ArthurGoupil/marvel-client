@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import './Pagination.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Pagination = ({ charactersCount, pageParams, limitPerPage }) => {
+const Pagination = ({ count, pageParams, limitPerPage, paginationType }) => {
   const pagesArray = [];
-  const pageSelectedIconSrc = '';
 
-  for (let i = 0; i < Math.ceil(charactersCount / limitPerPage); i++) {
+  for (let i = 0; i < Math.ceil(count / limitPerPage); i++) {
     pagesArray.push(i);
+  }
+  if (pagesArray.length === 0) {
+    pagesArray.push(0);
   }
   let pageParamsNum = Number(pageParams);
   if (!pageParamsNum) {
@@ -19,7 +21,7 @@ const Pagination = ({ charactersCount, pageParams, limitPerPage }) => {
     <div className="pages d-flex align-center justify-center flex-wrap">
       <Link
         className="page-number d-flex justify-center align-center"
-        to={`/characters/page=${pageParamsNum - 1}`}
+        to={`/${paginationType}/page=${pageParamsNum - 1}`}
       >
         <FontAwesomeIcon className="pagination-icons" icon="chevron-left" />
       </Link>
@@ -32,7 +34,7 @@ const Pagination = ({ charactersCount, pageParams, limitPerPage }) => {
                 : 'page-number d-flex justify-center align-center'
             }
             key={index}
-            to={`/characters/page=${page + 1}`}
+            to={`/${paginationType}/page=${page + 1}`}
           >
             {page + 1}
           </Link>
@@ -40,7 +42,7 @@ const Pagination = ({ charactersCount, pageParams, limitPerPage }) => {
       })}
       <Link
         className="page-number d-flex justify-center align-center"
-        to={`/characters/page=${pageParamsNum + 1}`}
+        to={`/${paginationType}/page=${pageParamsNum + 1}`}
       >
         <FontAwesomeIcon className="pagination-icons" icon="chevron-right" />
       </Link>

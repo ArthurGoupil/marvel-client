@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import CharactersCardsDisplay from '../components/CharactersCardsDisplay/CharactersCardsDisplay';
+import ComicsCardsDisplay from '../components/ComicsCardsDisplay/ComicsCardsDisplay';
 import Pagination from '../components/Pagination/Pagination';
 import SearchBloc from '../components/SearchBloc/SearchBloc';
-import searchImage from '../assets/images/hulk.png';
+import searchImage from '../assets/images/comic-picture.png';
 
-const Characters = () => {
+const Comics = () => {
   const [data, setData] = useState([]);
-  const [charactersCount, setCharactersCount] = useState();
+  const [comicsCount, setComicsCount] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const { pageParams } = useParams();
   const limitPerPage = 100;
@@ -23,10 +23,10 @@ const Characters = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3100/characters/page=${page}?limit=${limitPerPage}`
+          `http://localhost:3100/comics/page=${page}?limit=${limitPerPage}`
         );
-        setData(response.data.results);
-        setCharactersCount(response.data.total);
+        setData(response.data.data.results);
+        setComicsCount(response.data.data.total);
         setIsLoading(false);
       } catch (e) {
         console.error(e.message);
@@ -40,21 +40,21 @@ const Characters = () => {
       <SearchBloc
         searchImageSrc={searchImage}
         alt="Hulk"
-        placeholder="Find your own superhero..."
-        searchType="characters"
+        placeholder="Find your own comic..."
+        searchType="comics"
       />
       {!isLoading ? (
         <section className="d-flex flex-column">
-          <ul className="characters-cards-container d-flex flex-wrap">
-            {data.map((character, index) => {
-              return <CharactersCardsDisplay key={index} {...character} />;
+          <ul className="comics-cards-container d-flex flex-wrap">
+            {data.map((comic, index) => {
+              return <ComicsCardsDisplay key={index} {...comic} />;
             })}
           </ul>
           <Pagination
-            count={charactersCount}
+            count={comicsCount}
             pageParams={page}
             limitPerPage={limitPerPage}
-            paginationType="characters"
+            paginationType="comics"
           />
         </section>
       ) : (
@@ -64,4 +64,4 @@ const Characters = () => {
   );
 };
 
-export default Characters;
+export default Comics;

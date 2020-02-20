@@ -5,6 +5,10 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './components/Header/Header';
 import Characters from './pages/Characters';
+import Comics from './pages/Comics';
+import CharacterComics from './pages/CharacterComics';
+import CharactersSearch from './pages/CharactersSearch';
+import ComicsSearch from './pages/ComicsSearch';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -21,7 +25,19 @@ const App = () => {
         <main className="d-flex justify-center">
           <Switch>
             <Route path="/characters/page=:pageParams">
-              <Characters></Characters>
+              <Characters />
+            </Route>
+            <Route path="/characters/search=:search/page=:pageParams">
+              <CharactersSearch />
+            </Route>
+            <Route path="/character/:id/page=:pageParams">
+              <CharacterComics />
+            </Route>
+            <Route path="/comics/page=:pageParams">
+              <Comics />
+            </Route>
+            <Route path="/comics/search=:search/page=:pageParams">
+              <ComicsSearch />
             </Route>
           </Switch>
         </main>
