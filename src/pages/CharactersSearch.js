@@ -6,7 +6,7 @@ import Pagination from '../components/Pagination/Pagination';
 import SearchBloc from '../components/SearchBloc/SearchBloc';
 import searchImage from '../assets/images/hulk.png';
 
-const CharactersSearch = () => {
+const CharactersSearch = ({ user }) => {
   const [data, setData] = useState([]);
   const [charactersSearchCount, setCharactersSearchCount] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -49,7 +49,13 @@ const CharactersSearch = () => {
             <section className="d-flex flex-column">
               <ul className="characters-cards-container d-flex flex-wrap">
                 {data.map((character, index) => {
-                  return <CharactersCardsDisplay key={index} {...character} />;
+                  return (
+                    <CharactersCardsDisplay
+                      key={index}
+                      {...character}
+                      user={user}
+                    />
+                  );
                 })}
               </ul>
               <Pagination

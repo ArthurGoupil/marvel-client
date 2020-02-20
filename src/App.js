@@ -46,10 +46,10 @@ const App = () => {
         <main className="d-flex justify-center">
           <Switch>
             <Route path="/characters/page=:pageParams">
-              <Characters />
+              <Characters user={user} />
             </Route>
             <Route path="/characters/search=:search/page=:pageParams">
-              <CharactersSearch />
+              <CharactersSearch user={user} />
             </Route>
             <Route path="/character/:id/page=:pageParams">
               <CharacterComics />
