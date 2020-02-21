@@ -5,23 +5,26 @@ import './CharactersCardsDisplay.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CharactersCardsDisplay = ({ name, description, thumbnail, id, user }) => {
-  const sendCharactersFavourite = async () => {
-    try {
-      const response = await axios.post(
-        'https://marvel-goupil-backend.herokuapp.com/character/favourite',
-        { characterId: id },
-        {
-          headers: {
-            Autorization: 'Bearer ' + user.token,
-            'Content-Type': 'multipart/form-data'
-          }
-        }
-      );
-      console.log(response.data);
-    } catch (e) {
-      console.error(e.message);
-    }
-  };
+  // const sendCharactersFavourite = async () => {
+  //   try {
+  //     console.log(id);
+  //     console.log(user.token);
+
+  //     const response = await axios.post(
+  //       'https://marvel-goupil-backend.herokuapp.com/character/favourite',
+  //       { characterId: id },
+  //       {
+  //         headers: {
+  //           Autorization: 'Bearer ' + user.token,
+  //           'Content-Type': 'multipart/form-data'
+  //         }
+  //       }
+  //     );
+  //     console.log(response.data);
+  //   } catch (e) {
+  //     console.error(e.message);
+  //   }
+  // };
 
   const cardLink = `/character/${id}/page=1`;
   return (
@@ -30,7 +33,7 @@ const CharactersCardsDisplay = ({ name, description, thumbnail, id, user }) => {
         <div className="character-card d-flex">
           {user && (
             <FontAwesomeIcon
-              onClick={sendCharactersFavourite}
+              // onClick={sendCharactersFavourite}
               className="character-card-icon-favourite"
               icon="star"
             />
