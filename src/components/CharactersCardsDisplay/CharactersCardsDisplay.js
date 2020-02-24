@@ -15,8 +15,8 @@ const CharactersCardsDisplay = ({
 }) => {
   // FUNCTION CALLED TO ADD A THE CHARACTER TO THE USER FAVOURITE
   const sendCharactersFavourite = async () => {
-    try {
-      if (!userFavourites.characters.includes(id)) {
+    if (!userFavourites.characters.includes(id)) {
+      try {
         const response = await axios.post(
           process.env.REACT_APP_BACKEND + '/character/favourite',
           { characterId: id },
@@ -30,7 +30,11 @@ const CharactersCardsDisplay = ({
         copiedUserFavourites.characters.push(id);
         setUserFavourites(copiedUserFavourites);
         console.log(response.data);
-      } else {
+      } catch (e) {
+        console.error(e.message);
+      }
+    } else {
+      try {
         const response = await axios.post(
           process.env.REACT_APP_BACKEND + '/character/favourite/remove',
           { characterId: id },
@@ -45,9 +49,9 @@ const CharactersCardsDisplay = ({
         copiedUserFavourites.characters.splice(characterIndex);
         setUserFavourites(copiedUserFavourites);
         console.log(response.data);
+      } catch (e) {
+        console.error(e.message);
       }
-    } catch (e) {
-      console.error(e.message);
     }
   };
 
