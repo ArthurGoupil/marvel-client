@@ -29,20 +29,17 @@ const ModalConnect = ({ setDisplayModalConnect, setUser }) => {
       setErrorMessage('A true superhero has a password.');
     } else {
       try {
-        let mounted = true;
         const response = await axios.post(
-          'https://marvel-goupil-backend.herokuapp.com/user/log_in',
+          process.env.REACT_APP_BACKEND + '/user/log_in',
           {
             email,
             password
           }
         );
         Cookies.set('userToken', response.data.account.token, { expires: 30 });
-        if (mounted) {
-          setUser({ token: response.data.account.token });
-          setDisplayModalConnect(false);
-          setErrorMessage(null);
-        }
+        setUser({ token: response.data.account.token });
+        setDisplayModalConnect(false);
+        setErrorMessage(null);
         history.push('/characters/page=1');
       } catch (e) {
         setErrorMessage(`You're not a superhero (yet).`);

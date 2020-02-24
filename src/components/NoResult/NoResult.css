@@ -1,0 +1,21 @@
+/* NO RESULT STYLING */
+/* Marvel font */
+@font-face {
+  font-family: 'Marvel';
+  src: url('../../assets/fonts/marvelregular-webfont.woff2') format('woff2'),
+    url('../../assets/fonts/marvelregular-webfont.woff') format('woff'),
+    url('../../assets/fonts/marvelregular-webfont.ttf') format('truetype');
+}
+.no-result {
+  margin-top: 30px;
+}
+.no-result-text {
+  font-family: 'Marvel', Fallback, sans-serif;
+  font-size: 30px;
+  line-height: 35px;
+  margin-top: 20px;
+  letter-spacing: 2px;
+}
+.no-result-is-red {
+  color: var(--main-red);
+}

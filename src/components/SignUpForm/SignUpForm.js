@@ -37,7 +37,7 @@ const SignUp = ({ setUser }) => {
     } else {
       try {
         const response = await axios.post(
-          'https://marvel-goupil-backend.herokuapp.com/user/sign_up',
+          process.env.REACT_APP_BACKEND + '/user/sign_up',
           {
             email,
             password

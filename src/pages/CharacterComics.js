@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import ComicsCardsDisplay from '../components/ComicsCardsDisplay/ComicsCardsDisplay';
 import Pagination from '../components/Pagination/Pagination';
 import CharacterTopBloc from '../components/CharacterTopBloc/CharacterTopBloc';
+import Loader from '../components/Loader/Loader';
 
 const CharacterComics = () => {
   const [data, setData] = useState([]);
@@ -23,7 +24,7 @@ const CharacterComics = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://marvel-goupil-backend.herokuapp.com/character/${id}/page=${page}?limit=${limitPerPage}`
+          `${process.env.REACT_APP_BACKEND}/character/${id}/page=${page}?limit=${limitPerPage}`
         );
         setData(response.data.results);
         setComicsCount(response.data.total);
@@ -32,7 +33,7 @@ const CharacterComics = () => {
       }
       try {
         const response = await axios.get(
-          `https://marvel-goupil-backend.herokuapp.com/characterdata/${id}`
+          `${process.env.REACT_APP_BACKEND}/characterdata/${id}`
         );
         setCharacterData(response.data.data.results[0]);
         setIsLoading(false);
@@ -61,7 +62,7 @@ const CharacterComics = () => {
           />
         </section>
       ) : (
-        <span className="d-flex justify-center">Loading...</span>
+        <Loader />
       )}
     </div>
   );

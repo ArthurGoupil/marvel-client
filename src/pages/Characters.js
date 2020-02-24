@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+
 import CharactersCardsDisplay from '../components/CharactersCardsDisplay/CharactersCardsDisplay';
 import Pagination from '../components/Pagination/Pagination';
 import SearchBloc from '../components/SearchBloc/SearchBloc';
+import Loader from '../components/Loader/Loader';
+
 import searchImage from '../assets/images/hulk.png';
 
-const Characters = ({ user }) => {
+const Characters = ({ user, userFavourites, setUserFavourites }) => {
   const [data, setData] = useState([]);
   const [charactersCount, setCharactersCount] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -19,11 +22,10 @@ const Characters = ({ user }) => {
   } else page = pageParams;
 
   useEffect(() => {
-    setIsLoading(true);
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://marvel-goupil-backend.herokuapp.com/characters/page=${page}?limit=${limitPerPage}`
+          `${process.env.REACT_APP_BACKEND}/characters/page=${page}?limit=${limitPerPage}`
         );
         setData(response.data.results);
         setCharactersCount(response.data.total);
@@ -52,6 +54,8 @@ const Characters = ({ user }) => {
                   key={index}
                   {...character}
                   user={user}
+                  userFavourites={userFavourites}
+                  setUserFavourites={setUserFavourites}
                 />
               );
             })}
@@ -64,7 +68,7 @@ const Characters = ({ user }) => {
           />
         </section>
       ) : (
-        <span className="d-flex justify-center">Loading...</span>
+        <Loader />
       )}
     </div>
   );

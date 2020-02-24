@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+
 import CharactersCardsDisplay from '../components/CharactersCardsDisplay/CharactersCardsDisplay';
 import Pagination from '../components/Pagination/Pagination';
 import SearchBloc from '../components/SearchBloc/SearchBloc';
+import Loader from '../components/Loader/Loader';
+import NoResult from '../components/NoResult/NoResult';
+
 import searchImage from '../assets/images/hulk.png';
 
-const CharactersSearch = ({ user }) => {
+const CharactersSearch = ({ user, userFavourites, setUserFavourites }) => {
   const [data, setData] = useState([]);
   const [charactersSearchCount, setCharactersSearchCount] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +27,7 @@ const CharactersSearch = ({ user }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://marvel-goupil-backend.herokuapp.com/characters/search=${search}/page=${page}?limit=${limitPerPage}`
+          `${process.env.REACT_APP_BACKEND}/characters/search=${search}/page=${page}?limit=${limitPerPage}`
         );
         setData(response.data.results);
         setCharactersSearchCount(response.data.total);
@@ -45,36 +49,32 @@ const CharactersSearch = ({ user }) => {
       />
       {!isLoading ? (
         data.length !== 0 ? (
-          !isLoading ? (
-            <section className="d-flex flex-column">
-              <ul className="characters-cards-container d-flex flex-wrap">
-                {data.map((character, index) => {
-                  return (
-                    <CharactersCardsDisplay
-                      key={index}
-                      {...character}
-                      user={user}
-                    />
-                  );
-                })}
-              </ul>
-              <Pagination
-                count={charactersSearchCount}
-                pageParams={page}
-                limitPerPage={limitPerPage}
-                paginationType={`characters/search=${search}`}
-              />
-            </section>
-          ) : (
-            <span className="d-flex justify-center">
-              En cours de chargement...
-            </span>
-          )
+          <section className="d-flex flex-column">
+            <ul className="characters-cards-container d-flex flex-wrap">
+              {data.map((character, index) => {
+                return (
+                  <CharactersCardsDisplay
+                    key={index}
+                    {...character}
+                    user={user}
+                    userFavourites={userFavourites}
+                    setUserFavourites={setUserFavourites}
+                  />
+                );
+              })}
+            </ul>
+            <Pagination
+              count={charactersSearchCount}
+              pageParams={page}
+              limitPerPage={limitPerPage}
+              paginationType={`characters/search=${search}`}
+            />
+          </section>
         ) : (
-          <span>Aucun résultat</span>
+          <NoResult type="CHARACTER" />
         )
       ) : (
-        <span>Loading...</span>
+        <Loader />
       )}
     </div>
   );

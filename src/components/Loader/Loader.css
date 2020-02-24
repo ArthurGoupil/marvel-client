@@ -1,0 +1,9 @@
+.loader-svg {
+  margin: auto;
+  display: block;
+  shape-rendering: auto;
+}
+.loader-path {
+  transform: scale(0.8);
+  transform-origin: 50px 50px;
+}

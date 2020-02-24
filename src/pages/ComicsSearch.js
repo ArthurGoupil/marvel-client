@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+
 import ComicsCardsDisplay from '../components/ComicsCardsDisplay/ComicsCardsDisplay';
 import Pagination from '../components/Pagination/Pagination';
 import SearchBloc from '../components/SearchBloc/SearchBloc';
+import Loader from '../components/Loader/Loader';
+import NoResult from '../components/NoResult/NoResult';
+
 import searchImage from '../assets/images/comic-picture.png';
 
 const ComicsSearch = () => {
@@ -23,7 +27,7 @@ const ComicsSearch = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://marvel-goupil-backend.herokuapp.com/comics/search=${search}/page=${page}?limit=${limitPerPage}`
+          `${process.env.REACT_APP_BACKEND}/comics/search=${search}/page=${page}?limit=${limitPerPage}`
         );
         setData(response.data.results);
         setComicsSearchCount(response.data.total);
@@ -63,10 +67,10 @@ const ComicsSearch = () => {
             <span className="d-flex justify-center">Loading...</span>
           )
         ) : (
-          <span>Aucun résultat</span>
+          <NoResult type="COMIC" />
         )
       ) : (
-        <span>Loading...</span>
+        <Loader />
       )}
     </div>
   );

@@ -5,6 +5,7 @@
 .character-card-wrapper {
   width: calc(var(--container) / 2);
   padding: 10px;
+  position: relative;
 }
 .character-card-link {
   width: calc(var(--container) / 2);
@@ -18,7 +19,6 @@
   border-radius: 7px;
   transition: 0.3s;
   box-shadow: 2px 2px 10px 3px var(--background-dark);
-  position: relative;
 }
 .character-card:hover {
   box-shadow: 0px 0px 10px 3px var(--main-red);
@@ -35,12 +35,26 @@
 .character-card-text {
   margin: 20px;
 }
-.character-card-icon-favourite {
+.character-card-icon-favourite-solid {
   position: absolute;
-  top: 13.7px;
-  left: 13.5px;
-  font-size: 20px;
-  color: white;
-  stroke: var(--main-red);
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+  color: var(--main-red);
+  filter: drop-shadow(0 0 8px white);
+  stroke: white;
   stroke-width: 50;
+  cursor: pointer;
+}
+.character-card-icon-favourite-regular {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  filter: drop-shadow(0 0 3px var(--background-dark-scnd));
+}
+.character-card-icon-favourite-regular:hover {
+  filter: drop-shadow(0 0 3px var(--main-red));
 }

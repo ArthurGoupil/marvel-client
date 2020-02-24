@@ -61,7 +61,7 @@ b {
 .cursor-disabled {
   cursor: not-allowed;
 }
-.cursor-enabld {
+.cursor-enabled {
   cursor: inherit;
 }
 

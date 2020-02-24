@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 import './App.css';
 
 import Header from './components/Header/Header';
@@ -17,13 +18,15 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faChevronLeft,
   faChevronRight,
-  faStar,
+  faStar as fasFaStar,
   faMask
 } from '@fortawesome/free-solid-svg-icons';
-library.add(faChevronLeft, faChevronRight, faStar, faMask);
+import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
+library.add(faChevronLeft, faChevronRight, fasFaStar, farFaStar, faMask);
 
 const App = () => {
   const [displayModalConnect, setDisplayModalConnect] = useState(false);
+  const [userFavourites, setUserFavourites] = useState({});
   const tokenFromCookie = Cookies.get('userToken');
 
   let userState;
@@ -33,6 +36,23 @@ const App = () => {
     userState = null;
   }
   const [user, setUser] = useState(userState);
+
+  useEffect(() => {
+    const fetchUserFavourites = async () => {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND}/user/favourites`,
+        {
+          headers: {
+            Authorization: 'Bearer ' + user.token
+          }
+        }
+      );
+      setUserFavourites(response.data);
+    };
+    if (user) {
+      fetchUserFavourites();
+    }
+  }, [user]);
 
   return (
     <div className={displayModalConnect ? 'scroll-off' : 'scroll-on'}>
@@ -46,10 +66,18 @@ const App = () => {
         <main className="d-flex justify-center">
           <Switch>
             <Route path="/characters/page=:pageParams">
-              <Characters user={user} />
+              <Characters
+                user={user}
+                userFavourites={userFavourites}
+                setUserFavourites={setUserFavourites}
+              />
             </Route>
             <Route path="/characters/search=:search/page=:pageParams">
-              <CharactersSearch user={user} />
+              <CharactersSearch
+                user={user}
+                userFavourites={userFavourites}
+                setUserFavourites={setUserFavourites}
+              />
             </Route>
             <Route path="/character/:id/page=:pageParams">
               <CharacterComics />
