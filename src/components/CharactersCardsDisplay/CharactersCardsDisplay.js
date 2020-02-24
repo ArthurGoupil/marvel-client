@@ -46,7 +46,7 @@ const CharactersCardsDisplay = ({
         );
         const copiedUserFavourites = { ...userFavourites };
         const characterIndex = copiedUserFavourites.characters.indexOf(id);
-        copiedUserFavourites.characters.splice(characterIndex);
+        copiedUserFavourites.characters.splice(characterIndex, 1);
         setUserFavourites(copiedUserFavourites);
         console.log(response.data);
       } catch (e) {
